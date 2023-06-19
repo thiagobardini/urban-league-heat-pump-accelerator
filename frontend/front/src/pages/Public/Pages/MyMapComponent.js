@@ -30,9 +30,10 @@ const MyMapComponent = ({ location }) => {
 
     const map = new window.google.maps.Map(document.getElementById("map"), {
       center: { lat: location.lat, lng: location.lng },
+
       zoom: 15,
       // https://developers.google.com/maps/documentation/javascript/reference/map#MapTypeId
-      mapTypeId: "hybrid",
+      mapId: "MAP_ID",
 
       // mapId: "DEMO_MAP_ID",
     });

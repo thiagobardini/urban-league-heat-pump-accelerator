@@ -63,8 +63,8 @@ function Testimonials() {
   }, [location]);
 
   const containerStyle = {
-    height: "300px",
-    width: "500px",
+    height: "500px",
+    width: "50%",
   };
 
   const center = {
@@ -139,19 +139,18 @@ function Testimonials() {
               alignItems="center"
               spacing={2}
             >
-              <Box>
-                <GoogleMap
-                  mapContainerStyle={containerStyle}
-                  center={center}
-                  zoom={12}
-                >
-                  <Marker position={center} title="Uluru" />
-                </GoogleMap>
-              </Box>
+              <GoogleMap
+                mapContainerStyle={containerStyle}
+                center={center}
+                zoom={12}
+              >
+                <Marker position={center} title="Uluru" />
+              </GoogleMap>
+
               {/* <Box>
                 <MyMapComponent location={location} />
               </Box> */}
-              <Box>
+              <Box sx={{ width: "50%" }}>
                 <MyMapComponentCluster location={location} />
               </Box>
             </Stack>

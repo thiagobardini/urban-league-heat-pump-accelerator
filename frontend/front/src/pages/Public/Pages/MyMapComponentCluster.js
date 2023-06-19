@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { MarkerClusterer } from "@react-google-maps/api";
+import { data } from "./clusterCentroidsCopy";
+import { Box } from "@mui/material";
 
 const MyMapComponentCluster = ({ location }) => {
   console.log(location, "center in MyMapComponent");
   const containerStyle = {
-    height: "300px",
-    width: "500px",
+    height: "500px",
+    width: "100%",
   };
 
   useEffect(() => {
@@ -29,7 +31,7 @@ const MyMapComponentCluster = ({ location }) => {
 
   const initMap = () => {
     const map = new window.google.maps.Map(document.getElementById("map"), {
-      zoom: 3,
+      zoom: 12,
       center: { lat: location.lat, lng: location.lng },
     });
 
@@ -40,11 +42,11 @@ const MyMapComponentCluster = ({ location }) => {
 
     const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    const locations = [
-      { lat: -31.56391, lng: 147.154312 },
-      // ...
-      { lat: -43.999792, lng: 170.463352 },
-    ];
+    const locations = data.map((d) => ({
+      lat: d.lat,
+      lng: d.lon,
+    }));
+    console.log(locations, "locations");
 
     const markers = locations.map((position, i) => {
       const label = labels[i % labels.length];
@@ -63,15 +65,18 @@ const MyMapComponentCluster = ({ location }) => {
     });
 
     new MarkerClusterer(map, markers, {
-      imagePath:
-        "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+      // imagePath:
+      //   "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+      map: map,
+      position: { lat: location.lat, lng: location.lng },
+      title: "Uluru",
     });
   };
 
   return (
-    <div>
+    <Box>
       <div id="map" style={containerStyle}></div>
-    </div>
+    </Box>
   );
 };
 
